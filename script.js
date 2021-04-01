@@ -1,28 +1,25 @@
 // to add city to list
-addCity=(data,cities)=>{
-    let flag=0;
+addCity = (data, cities) => {
+    let flag = 0;
     const { main, name, sys, weather } = data;
-    for(let i=0;i<cities.length;i++)
-    {
+    for (let i = 0; i < cities.length; i++) {
         console.log(cities[i]);
-        if(name==cities[i].name && sys.country==cities[i].country)
-        {
-            flag=1;
+        if (name == cities[i].name && sys.country == cities[i].country) {
+            flag = 1;
         }
     }
-    if(flag==0)
-    {
-        let item={
-            "name":name,
-            "country":sys.country,
-            "temp":Math.round(main.temp) - 273,
-            "data":data,
-            "weather":weather[0]["description"]
+    if (flag == 0) {
+        let item = {
+            "name": name,
+            "country": sys.country,
+            "temp": Math.round(main.temp) - 273,
+            "data": data,
+            "weather": weather[0]["description"]
         }
         cities.push(item);
 
         const icon = `https://openweathermap.org/img/wn/${weather[0]["icon"]
-        }@2x.png`;
+            }@2x.png`;
 
         let markup = `
         <li>
@@ -67,8 +64,12 @@ showWeather = (data) => {
 
 $(document).ready(() => {
 
+    $("form").on("submit", function (e) {
+        e.preventDefault();
+    })
+
     let msg = $(".msg");
-    let cities=[];
+    let cities = [];
 
     $("button").click(() => {
 
@@ -80,20 +81,18 @@ $(document).ready(() => {
         fetch(url)
             .then(response => response.json())
             .then(data => {
-                addCity(data,cities);
-                if(cities.length!=0)
-                {
+                addCity(data, cities);
+                if (cities.length != 0) {
                     $(".current").addClass("main");
-                    $(".list").css("visibility","visible");
+                    $(".list").css("visibility", "visible");
                 }
-                
-                console.log(cities);
                 showWeather(data);
-                // showList(cities);
+
                 msg.text("");
             })
             .catch(() => {
-                msg.text("Please search for a valid city 😩");
+                msg.text("Data not Available 😩");
             });
     });
+
 })
