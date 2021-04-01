@@ -5,10 +5,13 @@ body{
 }
 
 li{
-    background-color:lightgrey;
+    background-color:lightblue;
     color:brown;
     list-style: none;
     display:inline-block;
+    /* float: none;
+    overflow-x: auto;
+    white-space: nowrap; */
     padding: 14px;
     font-size:x-small;
     border-radius: 1rem;
@@ -36,7 +39,13 @@ ul{
 }
 
 .head{
-    border:1px solid white
+    padding-top: 5px;
+    border:1px solid white;
+    color:whitesmoke;
+}
+
+.recent{
+    color:lightskyblue;
 }
 
 .btn{
@@ -47,7 +56,7 @@ ul{
 }
 
 .main{
-    background-color: white;
+    background-color:white;
     color:darkblue;
     border-radius: 1rem;
     padding: 5px;
